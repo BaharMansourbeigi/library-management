@@ -18,7 +18,7 @@ class Book(models.Model):
         return f"{self.title}"
 
     class Meta:
-        ordering = "-created_at"
+        ordering = ["-created_at"]
 
 
 class Author(models.Model):
