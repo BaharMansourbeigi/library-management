@@ -14,7 +14,15 @@ class BookForm(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
-    s = forms.CharField(required=False, label="Search")
+    s = forms.CharField(
+        required=False,
+        label="Search",
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+            }
+        ),
+    )
 
 
 class FilterForm(forms.Form):
@@ -23,16 +31,38 @@ class FilterForm(forms.Form):
         validators=[MinValueValidator(0)],
         max_digits=10,
         decimal_places=2,
+        widget=forms.NumberInput(
+            attrs={
+                "class": "form-control",
+            }
+        ),
     )
     max_price = forms.DecimalField(
         required=False,
         validators=[MinValueValidator(0)],
         max_digits=10,
         decimal_places=2,
+        widget=forms.NumberInput(
+            attrs={
+                "class": "form-control",
+            }
+        ),
     )
     from_date = forms.DateField(
-        required=False, widget=forms.DateInput(attrs={"type": "date"})
+        required=False,
+        widget=forms.DateInput(
+            attrs={
+                "type": "date",
+                "class": "form-control",
+            }
+        ),
     )
     to_date = forms.DateField(
-        required=False, widget=forms.DateInput(attrs={"type": "date"})
+        required=False,
+        widget=forms.DateInput(
+            attrs={
+                "type": "date",
+                "class": "form-control",
+            }
+        ),
     )
