@@ -5,12 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Library{% endblock %}</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --cream: #FAF6EE;
+            --sage: #749c6e;
+            --sage-dark: #8FB389;
+            --forest: #4B6350;
+            --rose: #a55750;
+            --rose-dark: #9b483f;
+            --tan: #B7AE96;
+            --tan-dark: #A29873;
+            --ink: #3F3B33;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--ink);
+        }
+
+        a {
+            color: var(--forest);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--forest) !important;
+        }
+
+        /* Cards */
+        .card {
+            background-color: #FFFDF8;
+            border: 1px solid #E4DCC8;
+            border-radius: 0.75rem;
+        }
+
+        /* Table */
+        .table-striped > tbody > tr:nth-of-type(odd) > * {
+            --bs-table-accent-bg: #F1EBDC;
+        }
+
+        /* Primary buttons (Add Book, Save) */
+        .btn-primary {
+            --bs-btn-bg: var(--sage);
+            --bs-btn-border-color: var(--sage);
+            --bs-btn-hover-bg: var(--sage-dark);
+            --bs-btn-hover-border-color: var(--sage-dark);
+            --bs-btn-active-bg: var(--sage-dark);
+            --bs-btn-active-border-color: var(--sage-dark);
+            --bs-btn-color: var(--ink);
+            --bs-btn-hover-color: var(--ink);
+            --bs-btn-active-color: var(--ink);
+        }
+
+        .btn-outline-primary {
+            --bs-btn-color: var(--forest);
+            --bs-btn-border-color: var(--sage);
+            --bs-btn-hover-bg: var(--sage);
+            --bs-btn-hover-border-color: var(--sage);
+            --bs-btn-hover-color: var(--ink);
+        }
+
+        /* Danger buttons (Delete) */
+        .btn-danger {
+            --bs-btn-bg: var(--rose);
+            --bs-btn-border-color: var(--rose);
+            --bs-btn-hover-bg: var(--rose-dark);
+            --bs-btn-hover-border-color: var(--rose-dark);
+        }
+
+        .btn-outline-danger {
+            --bs-btn-color: var(--rose-dark);
+            --bs-btn-border-color: var(--rose);
+            --bs-btn-hover-bg: var(--rose);
+            --bs-btn-hover-border-color: var(--rose);
+        }
+
+        /* Secondary / outline-secondary buttons (Filter, Cancel, Search) */
+        .btn-outline-secondary {
+            --bs-btn-color: var(--tan-dark);
+            --bs-btn-border-color: var(--tan);
+            --bs-btn-hover-bg: var(--tan);
+            --bs-btn-hover-border-color: var(--tan);
+            --bs-btn-hover-color: var(--ink);
+        }
+    </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
+    <nav class="navbar navbar-expand navbar-dark mb-4">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'book_list' %}">📚 Library</a>
+            <a class="navbar-brand text-white" href="{% url 'book_list' %}">📚 Library</a>
         </div>
     </nav>
 

@@ -12,10 +12,13 @@ class Book(models.Model):
     author = models.ForeignKey(
         to="Author", on_delete=models.CASCADE, related_name="books"
     )
+    category = models.ForeignKey(
+        to="Category", on_delete=models.SET_NULL, null=True, blank=True
+    )
 
     def __str__(self):
 
-        return f"{self.title}"
+        return self.title
 
     class Meta:
         ordering = ["-created_at"]
@@ -35,4 +38,4 @@ class Category(models.Model):
 
     def __str__(self):
 
-        return f"{self.name}"
+        return self.name
