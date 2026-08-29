@@ -5,15 +5,45 @@
         <h1 class="h3 mb-0">Books</h1> 
         <a href="{% url 'book_create' %}" class="btn btn-primary">+ Add Book</a> 
     </div>
-    <form method="get" class="d-flex mb-4" style="max-width: 400px;">
-        <input
-            type="text"
-            name="q"
-            value="{{ request.GET.q }}"
-            class="form-control me-2"
-            placeholder="Search by title or author..."
-        >
-        <button type="submit" class="btn btn-outline-secondary">Search</button>
+    <form method="get">
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="h6 card-title">Search</h2>
+                        {{ search_form.s }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="h6 card-title">Filter</h2>
+                        <div class="row g-2">
+                            <div class="col-sm-3">
+                                <label class="form-label small text-muted">Min price</label>
+                                {{ filter_form.min_price }}
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="form-label small text-muted">Max price</label>
+                                {{ filter_form.max_price }}
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="form-label small text-muted">From date</label>
+                                {{ filter_form.from_date }}
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="form-label small text-muted">To date</label>
+                                {{ filter_form.to_date }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-outline-secondary mb-4">Apply</button>
     </form>
 
     {% if books %}
@@ -33,7 +63,9 @@
                         <td>
                             <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
                         </td>
-                        <td>{{ book.author }}</td>
+                        <td>
+                            {{ book.author }}
+                        </td>
                         <td>{{ book.price }}</td>
                         <td>{{ book.publish_date }}</td>
                         <td class="text-end">
@@ -44,6 +76,13 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <a
+            href="{% url 'book_delete_filtered' %}?{{ request.GET.urlencode }}"
+            class="btn btn-outline-danger"
+        >
+            Delete all shown ({{ books|length }})
+        </a>
     {% else %}
         <p class="text-muted">No books found.</p>
     {% endif %}
