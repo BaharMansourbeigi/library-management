@@ -1,13 +1,13 @@
 from django import forms
 from django.core.validators import MinValueValidator
 
-from .models import Book
+from .models import Book, Category
 
 
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ["title", "price", "publish_date", "author"]
+        fields = ["title", "price", "publish_date", "author", "category"]
         widgets = {
             "publish_date": forms.DateInput(attrs={"type": "date"}),
         }
@@ -62,6 +62,15 @@ class FilterForm(forms.Form):
         widget=forms.DateInput(
             attrs={
                 "type": "date",
+                "class": "form-control",
+            }
+        ),
+    )
+    category = forms.ModelChoiceField(
+        queryset=Category.objects.all(),
+        required=False,
+        widget=forms.Select(
+            attrs={
                 "class": "form-control",
             }
         ),

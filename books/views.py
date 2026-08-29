@@ -22,6 +22,7 @@ def get_filter_books(request):
         max_price = filter_form.cleaned_data.get("max_price")
         from_date = filter_form.cleaned_data.get("from_date")
         to_date = filter_form.cleaned_data.get("to_date")
+        category = filter_form.cleaned_data.get("category")
 
         if min_price is not None:
             books = books.filter(price__gte=min_price)
@@ -31,6 +32,8 @@ def get_filter_books(request):
             books = books.filter(publish_date__gte=from_date)
         if to_date:
             books = books.filter(publish_date__lte=to_date)
+        if category:
+            books = books.filter(category=category)
 
     return books, search_form, filter_form
 
