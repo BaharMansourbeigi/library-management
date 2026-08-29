@@ -8,5 +8,11 @@ class BookAdmin(admin.ModelAdmin):
     list_display = ("title", "author", "price", "publish_date")
 
 
-admin.site.register(Author)
-admin.site.register(Category)
+@admin.register(Author)
+class AuthorAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    pass

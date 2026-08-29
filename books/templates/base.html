@@ -1,0 +1,16 @@
+<!doctype html>
+<nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'book_list' %}">📚 Library</a>
+        <div class="navbar-nav">
+            <a class="nav-link" href="{% url 'book_list' %}">Books</a>
+            <a class="nav-link" href="{% url 'book_create' %}">Add Book</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
